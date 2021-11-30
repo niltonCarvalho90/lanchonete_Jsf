@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/modeloSistema.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/includes/menuPrincipal.xhtml"></ui:include>
+	</ui:define>
+
+
+	<ui:define name="conteudo">
+		<h:form id="frmCardProd">
+			<p:dataTable id="tblCardProd" value="#{CardapioBean.itens}"
+				var="item" emptyMessage="Nenhum dado encontrado"
+				widgetVar="tblCardProd">
+				<f:facet name="header">
+					<h:outputText value="Cardápio de comidas" />
+				</f:facet>
+				<p:column headerText="Código" sortBy="#{item.codigo}">
+					<h:outputText value="#{item.codigo}" />
+				</p:column>
+				<p:column headerText="Descricao" sortBy="#{item.nome}">
+					<h:outputText value="#{item.nome}" />
+				</p:column>
+				<p:column headerText="Preço" sortBy="#{item.preco}">
+					<h:outputText value="#{item.preco}" >
+					<f:convertNumber pattern="0.00" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Selecionar" sortBy="#{item.tipoComida}">
+					<h:outputText value="#{item.tipoComida}"/>		
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton value="Voltar" action="/pages/index.xhtml" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
